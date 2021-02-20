@@ -1,0 +1,36 @@
+name: Integration Test
+
+on: 
+  workflow_dispatch:
+    inputs:
+      name:
+        description: "The tag name."
+        required: true
+      state:
+        description: "The expected tag state."
+        default: "present"
+        required: false
+      from:
+        description: "The commit SHA from which to create the tag."
+        required: false
+
+
+jobs:
+  manage-tag:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Test repository
+        id: manage_tag
+        uses: ./
+        with:
+          name:  ${{ github.event.inputs.name }}
+          state:  ${{ github.event.inputs.state }}
+          from:  ${{ github.event.inputs.from }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Check outputs
+        run: |
+          test "${{ steps.manage_tag.outputs.name }}" != ""
+          test "${{ steps.manage_tag.outputs.ref }}" != ""
+          test "${{ steps.manage_tag.outputs.sha }}" != ""
