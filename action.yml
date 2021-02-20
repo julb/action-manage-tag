@@ -2,7 +2,7 @@ name: Manage tags
 description: "Manage the tags for a given repository"
 author: "julb"
 branding:
-  icon: flag
+  icon: tag
   color: blue
 inputs:
   name:
