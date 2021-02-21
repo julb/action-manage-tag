@@ -1,6 +1,6 @@
 ![Build](https://github.com/julb/action-manage-tag/workflows/Build/badge.svg)
 
-# GitHub Action to manage tages
+# GitHub Action to manage tags
 
 The GitHub Action for managing tags of the GitHub repository.
 
